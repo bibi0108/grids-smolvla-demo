@@ -61,29 +61,25 @@
 <p class="meta">사진은 각 시행의 접근·파지·후속 동작 순서로 배열했습니다. 시간은 각 영상의 시작 기준입니다.</p>
 <div class="pair"><article><h4 class="baseline">Baseline · T3_1111_B15 · Top</h4><ol class="frames"><li><img src="rollout-T3_1111_B15-f90.jpg" loading="lazy" width="640" height="480" alt="뚜껑 접근"><span>뚜껑 접근</span><small>f90 · 3.00초</small></li><li><img src="rollout-T3_1111_B15-f210.jpg" loading="lazy" width="640" height="480" alt="유지 들림"><span>유지 들림</span><small>f210 · 7.00초</small></li><li><img src="rollout-T3_1111_B15-f330.jpg" loading="lazy" width="640" height="480" alt="뚜껑 놓기"><span>뚜껑 놓기</span><small>f330 · 11.00초</small></li><li><img src="rollout-T3_1111_B15-f900.jpg" loading="lazy" width="640" height="480" alt="큐브 파지"><span>큐브 파지</span><small>f900 · 30.00초</small></li><li><img src="rollout-T3_1111_B15-f1020.jpg" loading="lazy" width="640" height="480" alt="최종 수납"><span>최종 수납</span><small>f1020 · 34.00초</small></li></ol></article><article><h4 class="grids">GridS · T3_1111_G17 · Top</h4><ol class="frames"><li><img src="rollout-T3_1111_G17-f90.jpg" loading="lazy" width="640" height="480" alt="초기 접근"><span>초기 접근</span><small>f90 · 3.00초</small></li><li><img src="rollout-T3_1111_G17-f210.jpg" loading="lazy" width="640" height="480" alt="유지 들림"><span>유지 들림</span><small>f210 · 7.00초</small></li><li><img src="rollout-T3_1111_G17-f270.jpg" loading="lazy" width="640" height="480" alt="뚜껑 놓기"><span>뚜껑 놓기</span><small>f270 · 9.00초</small></li><li><img src="rollout-T3_1111_G17-f510.jpg" loading="lazy" width="640" height="480" alt="큐브 파지"><span>큐브 파지</span><small>f510 · 17.00초</small></li><li><img src="rollout-T3_1111_G17-f570.jpg" loading="lazy" width="640" height="480" alt="최종 수납"><span>최종 수납</span><small>f570 · 19.00초</small></li></ol></article></div>
 <h3>본평가 결과</h3>
-<table><thead><tr><th scope="col">지표</th><th scope="col" class="baseline">Baseline</th><th scope="col" class="grids">GridS</th></tr></thead><tbody><tr><th scope="row">최종 수납</th><td>19/30 · 63.3%</td><td>13/30 · 43.3%</td></tr><tr><th scope="row">정상 개방 · 뚜껑을 정상적으로 열기</th><td>27/30 · 90.0%</td><td>24/30 · 80.0%</td></tr><tr><th scope="row">정상 뚜껑 처리 · 열고 상자 옆에 놓기</th><td>24/30 · 80.0%</td><td>23/30 · 76.7%</td></tr></tbody></table>
+<table><thead><tr><th scope="col">지표</th><th scope="col" class="baseline">Baseline</th><th scope="col" class="grids">GridS</th></tr></thead><tbody><tr><th scope="row">최종 수납</th><td>22/30 · 73.3%</td><td>13/30 · 43.3%</td></tr><tr><th scope="row">누적 성공 · 정상 뚜껑 처리 포함</th><td>19/30 · 63.3%</td><td>13/30 · 43.3%</td></tr><tr><th scope="row">정상 개방 · 뚜껑을 정상적으로 열기</th><td>27/30 · 90.0%</td><td>24/30 · 80.0%</td></tr><tr><th scope="row">정상 뚜껑 처리 · 열고 상자 옆에 놓기</th><td>24/30 · 80.0%</td><td>23/30 · 76.7%</td></tr></tbody></table>
 
 <details class="supp"><summary>손잡이 방향과 후속 큐브 파지</summary><p>정상 뚜껑 처리는 가로에서 Baseline 13/15, GridS 14/15, 세로에서 11/15, 9/15였습니다. 위 두 시행은 모두 세로 손잡이 사례입니다. B15와 G17은 뚜껑을 상자 옆에 놓은 뒤 큐브를 집어 상자 안에 수납했습니다. 유지 들림 프레임 f210에서 gripper.pos는 B15가 3.05점, G17이 3.44점이었습니다.</p><p>같은 세로 방향의 GridS G17과 G15를 저장 그리퍼 목표·위치 및 Belly 영상으로 대조했습니다. 뚜껑을 처리한 뒤 G17은 큐브을 유지해 이동했고, G15는 큐브 유지 들림과 최종 수납을 완료하지 못했습니다.</p></details>
 </section>
 <section aria-labelledby="conclusion">
 <h2 id="conclusion">결론</h2>
-<p>GridS 적용 결과는 과제별로 달랐습니다. 본평가에서 T1의 최종 수납은 38.7%에서 60.0%로 증가했습니다. T2의 100% 안착은 21.4%에서 14.3%로, T3의 최종 수납은 63.3%에서 43.3%로 감소했습니다.</p>
+<p>GridS 적용 결과는 과제별로 달랐습니다. 본평가에서 T1의 최종 수납은 38.7%에서 60.0%로 증가했습니다. T2의 100% 안착은 21.4%에서 14.3%로, T3의 최종 수납은 73.3%에서 43.3%로 감소했습니다. 정상 뚜껑 처리를 포함한 T3 누적 성공은 63.3%에서 43.3%로 감소했습니다.</p>
 <p>단계별로 보면 T1의 충분 개방 증가, T2의 시행 중 유지 들림 감소, T3의 정상 뚜껑 처리 이후 수납 격차가 관찰됐습니다. 시행 순서와 접촉 조건 등은 충분히 통제되지 않았습니다.</p>
 <details class="supp"><summary>검정 범위 보기</summary><p>T1 충분 개방, T2 본평가·후속 평가의 최종 파지, T3 정상 뚜껑 처리를 묶은 Holm 보정 Fisher 정확검정에서는 모두 유의하지 않았습니다. 사후 탐색적 Barnard·Boschloo 검정에서는 T1 충분 개방과 T2 본평가 최종 파지만 보정 후 .05 미만이었습니다.</p>
 <h4>검정 결과 해석</h4>
 <ul>
-<li><strong>T1 서랍.</strong> 충분 개방률은 GridS가 더 높았고(90.0% 대 61.3%), 사후 탐색 검정에서 보정 후 .05 미만이었습니다. 최종 큐브 수납률도 GridS가 더 높게 관찰됐습니다(60.0% 대 38.7%). 수납률은 이 검정의 비교 항목에 포함되지 않았습니다.</li>
+<li><strong>T1 서랍.</strong> 충분 개방률은 GridS가 더 높았고(90.0% 대 61.3%), 사후 탐색 검정에서 보정 후 .05 미만이었습니다. 전체 본평가에서 최종 큐브 수납은 GridS 18/30(60.0%), Baseline 12/31(38.7%)이었습니다. GridS가 21.3%p 높았고, 차이의 95% 신뢰구간은 −3.56~+42.78%p였습니다. 수납률 사후 탐색 분석에서는 Holm 보정 후 유의 기준을 충족하지 않았습니다(p = .12688).</li>
 <li><strong>T2 큐브 집어 놓기.</strong> 본평가에서 시행 중 한 번 이상 큐브를 들어 올려 유지한 비율은 Baseline이 더 높았고(53.6% 대 21.4%), 사후 탐색 검정에서 보정 후 .05 미만이었습니다. 후속 평가의 최종 파지는 이 기준을 충족하지 않았습니다.</li>
-<li><strong>T3 뚜껑.</strong> 정상 뚜껑 처리율은 Baseline 80.0%, GridS 76.7%로 사후 탐색 검정에서도 보정 후 .05 기준을 충족하지 않았습니다. 최종 큐브 수납률은 Baseline이 더 높게 관찰됐습니다(63.3% 대 43.3%). 수납률은 이 검정의 비교 항목에 포함되지 않았습니다.</li>
+<li><strong>T3 뚜껑.</strong> 정상 뚜껑 처리율은 Baseline 80.0%, GridS 76.7%로 사후 탐색 검정에서도 보정 후 .05 기준을 충족하지 않았습니다. 전체 본평가에서 최종 큐브 수납은 Baseline 22/30(73.3%), GridS 13/30(43.3%)이었습니다. Baseline이 30.0%p 높았고, 차이의 95% 신뢰구간은 GridS−Baseline 기준 −50.26~−5.07%p였습니다. 수납률 사후 탐색 분석에서는 Holm 보정 후 유의 기준을 충족하지 않았습니다(p = .07043). Baseline의 22건에는 뚜껑을 정상 처리하지 못하고도 수납한 3건이 포함됩니다. 포스터의 19/30은 정상 뚜껑 처리까지 포함한 누적 성공입니다.</li>
 </ul>
-<p>보정 p값이 .05 이상이라는 결과는 두 정책의 성능이 같음을 입증하지 않습니다. .05 미만인 두 결과는 사후 탐색 분석에서 관찰된 차이로 해석합니다.</p>
+<p>수납률은 선행 단계의 판정과 관계없이 전체 본평가 시행을 분모로 계산했습니다. 충분 개방이나 정상 뚜껑 처리 이후의 조건부 비율은 해당 단계를 통과한 시행을 분모로 계산합니다. 이번 양측 Fisher 정확검정의 Holm 보정은 두 수납률 비교에 한정했습니다. 신뢰구간은 각 비교의 Newcombe 95% 구간입니다. 정책별 실행 순서와 시행 간 독립성의 불확실성을 고려해 표본에서 관찰된 차이로 해석합니다.</p>
 </details>
 </section>
 <footer><a href="https://fediory.com/Grid-Sampler/">Grid Sampler</a> · <a href="https://arxiv.org/pdf/2605.29662">SAFE-Pruner (사진 배열 참고)</a> · <a href="https://github.com/bibi0108/grids-smolvla-demo">저장소</a></footer>
 </main>
 </body>
 </html>
-
-
-
-
