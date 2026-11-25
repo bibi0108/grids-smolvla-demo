@@ -1,52 +1,79 @@
 <!doctype html>
 <html lang="ko">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GridS는 어떤 경로로 서랍을 더 자주 열었을까? | 종합설계 II</title>
-<style>
-:root{color-scheme:light;--bg:#f5f5ec;--ink:#142b28;--muted:#465f58;--line:#c6d5ca;--accent:#006854}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,sans-serif}main,nav,footer{max-width:1120px;margin:auto;padding:0 24px}nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;border-bottom:1px solid var(--line);font-size:.9rem}nav a,footer a{color:var(--accent)}header{padding:58px 0 32px;max-width:830px}h1,h2,h3,p{margin:0}h1{font-size:clamp(1.75rem,5.5vw,3.8rem);letter-spacing:normal;line-height:1.24;word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance;margin:.18em 0 .33em}h2{font-size:clamp(1.65rem,4vw,2.6rem);line-height:1.2;letter-spacing:normal;margin-bottom:14px}h3{font-size:1.03rem}p{color:var(--muted)}section{padding:38px 0 46px;border-top:1px solid var(--line)}figure{margin:0}figcaption{padding:10px 0;color:var(--muted);font-size:.9rem}video,img{width:100%;display:block;border-radius:10px}video{aspect-ratio:4/3;background:#153a33}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:20px 0}.metric{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px}.metric div{border-left:3px solid var(--accent);padding-left:13px}.metric strong{font-size:1.5rem;display:block}.single{max-width:540px;margin-top:18px}.figure{margin-top:20px}footer{padding-block:25px 44px;border-top:1px solid var(--line);font-size:.9rem}@media(max-width:620px){.grid{grid-template-columns:1fr}header{padding-top:34px}}
-.sampling{margin-top:16px}.sampling summary{cursor:pointer;color:var(--accent)}.sampling figure{max-width:540px}.conclusion{margin-top:16px}
-</style>
-<nav><strong>종합설계 II · 김은모</strong><a href="#results">실험 결과로 이동 ↓</a></nav>
+<title>SmolVLA와 GridS의 과제에 따른 단계별 성과 및 움직임 비교 | 종합설계 II</title>
+<link rel="stylesheet" href="page.css">
+<script defer src="rollout-traces.js"></script>
+<script defer src="sync.js"></script>
+</head>
+<body>
 <main>
 <header>
-<p>SmolVLA · GridS · SO-101</p>
-<h1>GridS는 어떤 경로로 서랍을 더 자주 열었을까?</h1>
-<p>카메라 영상에서 학습된 좌표로 시각 특징을 골라 쓰는 GridS를 SmolVLA에 적용했습니다. 서랍 열기, 큐브 옮기기, 뚜껑 열기 세 과제의 실제 로봇 영상으로 성능 차이가 나타난 순간을 살펴봅니다.</p>
-<details class="sampling">
-<summary>GridS가 특징을 읽는 위치 보기</summary>
-<figure class="figure"><img loading="lazy" src="sampling.jpg" alt="T2 영상 위에 표시한 노란색 GridS 표본점과 카드보드·큐브 중심"><figcaption>T2 큐브 옮기기 영상 예시. 노란 점은 GridS가 특징을 읽는 위치입니다. 청록색은 카드보드 중심, 분홍색은 큐브 중심입니다.</figcaption></figure>
-</details>
-<div class="metric"><div><strong>19/31 → 27/30</strong>T1 충분 개방 · Baseline → GridS</div><div><strong>11/31 → 23/30</strong>저장 영상 20초까지 충분 개방</div></div>
+<p class="byline">종합설계 II · 김은모</p>
+<h1>SmolVLA와 GridS의 과제에 따른 단계별 성과 및 움직임 비교</h1>
+<p class="lead">SmolVLA Baseline과 GridS 적용 정책이 실제 로봇의 서랍 열기·큐브 옮기기·뚜껑 열기에서 어떻게 다른 결과를 내는지 비교했습니다.</p>
+<nav aria-label="과제 바로가기"><a href="#t1"><img src="rollout-T1_1028_B00-f0.jpg" width="640" height="480" alt=""><strong>T1 서랍</strong></a><a href="#t2"><img src="rollout-T2_1116_B03-f0.jpg" width="640" height="480" alt=""><strong>T2 큐브</strong></a><a href="#t3"><img src="rollout-T3_1111_B15-f0.jpg" width="640" height="480" alt=""><strong>T3 뚜껑</strong></a></nav>
 </header>
-<section aria-labelledby="drawer">
-<h2 id="drawer">T1 서랍 열기</h2>
-<p>GridS는 첫 유효 파지를 더 자주 확보했고, 첫 파지에 실패한 시행에서도 손잡이를 유지해 충분히 여는 경우가 많았습니다. 아래 두 영상은 10월 28일 본평가에서 GridS가 첫 유효 파지에 성공한 사례입니다.</p>
-<div class="grid">
-<figure><video controls playsinline preload="metadata" poster="drawer-first.jpg" src="drawer-first.mp4" aria-label="T1 G03 첫 당김으로 충분 개방"></video><figcaption><h3>첫 당김으로 열기</h3>GridS G03 · 첫 당김으로 충분히 엽니다.</figcaption></figure>
-<figure><video controls playsinline preload="metadata" poster="drawer-regrasp.jpg" src="drawer-regrasp.mp4" aria-label="T1 G13 손잡이 이탈 후 재유지"></video><figcaption><h3>놓친 손잡이를 다시 잡기</h3>GridS G13 · 부분 개방 뒤 손잡이를 놓쳤다가 다시 잡아 충분히 엽니다.</figcaption></figure>
-</div>
-<p>서랍에서는 손잡이를 다시 잡아 당겨도 충분히 열리지 않은 경우가 있었습니다. 큐브에서는 다시 접근해 그리퍼를 닫아도 바로 들어 올려 유지하지 못했고, 뚜껑에서는 첫 실패 후 유지 들림이 손잡이 방향에 따라 달랐습니다.</p>
+<section aria-labelledby="overview">
+<h2 id="overview">연구 개요</h2>
+<p>SmolVLA는 카메라 영상, 작업 지시문, 팔 5축과 그리퍼의 현재 상태로부터 로봇 동작 목표를 생성하는 시각·언어·행동 정책입니다. GridS는 커넥터가 만든 8×8 시각 특징 지도에서 학습된 연속 좌표 16개를 사용해 특징을 보간하고 좌표 임베딩을 더합니다.</p>
+<figure class="flow"><div>Top · Wrist · Belly 영상</div><div>시각 인코더 → 커넥터</div><div class="branches"><span class="baseline">Baseline<br>카메라당 64 토큰</span><span class="grids">GridS<br>카메라당 16 토큰</span></div><div>SmolVLA 정책 ← 작업 지시 · 관절 상태</div><div>팔 5축·그리퍼 목표 → SO-101 제어</div><figcaption>개념도 · 두 정책의 시각 특징 경로는 커넥터 뒤에서 갈립니다.</figcaption></figure>
+<div class="pair illustrations"><figure><img src="rollout-grid-camera.jpg" loading="lazy" alt="큐브 이동 원본 카메라 영상"><figcaption>원본 카메라 프레임 · T2 후속 평가 GridS G04 · Top f50</figcaption></figure><figure><img src="rollout-grid-points.svg" loading="lazy" alt="커넥터 규칙 격자와 GridS의 16개 표본 좌표"><figcaption>처리 시각화 · 같은 관측에서 커넥터의 8×8 규칙 격자와 GridS가 예측한 16개 정규화 좌표를 비교했습니다. 가까운 좌표는 겹쳐 보일 수 있습니다.</figcaption></figure></div>
 </section>
-<section aria-labelledby="cube">
-<h2 id="cube">T2 큐브 옮기기</h2>
-<p>큐브 위치 2의 첫 유효 파지는 두 평가일을 합쳐 Baseline 7/9, GridS 0/9였습니다. 아래는 11월 16일 후속 평가의 위치 2 사례입니다. 후속 평가의 첫 실패 10건에서는 첫 재접근·닫힘 주변의 유지 들림이 확인되지 않았습니다. 그 구간이 지난 뒤 Baseline B01은 재시도해 큐브를 들고 지정 영역에 놓았습니다.</p>
-<div class="grid">
-<figure><video controls playsinline preload="none" poster="cube-baseline.jpg" src="cube-baseline.mp4" aria-label="T2 B03 큐브 유지 들림"></video><figcaption><h3>Baseline B03</h3>큐브가 작업면을 떠나 그리퍼와 함께 올라갑니다.</figcaption></figure>
-<figure><video controls playsinline preload="none" poster="cube-grids.jpg" src="cube-grids.mp4" aria-label="T2 G04 작업면에 남은 큐브"></video><figcaption><h3>GridS G04</h3>그리퍼가 올라가도 큐브는 작업면에 남습니다.</figcaption></figure>
-</div>
+<section id="t1" aria-labelledby="h1">
+<h2 id="h1">T1 서랍</h2>
+<p>손잡이를 잡아 서랍을 열고 블록을 서랍 안에 넣습니다. 블록이 서랍 안에 들어가면 최종 성공입니다.</p>
+<h3>대표 실제 로봇 영상</h3>
+<p class="meta">본평가의 손잡이 조작 사례입니다. 조건별로 한 시행의 전체 저장 영상을 제공합니다.</p>
+<div class="pair"><article class="clip"><h4 class="baseline">Baseline · T1_1028_B00 · Top</h4><p class="meta">본평가 · 10/28 · 충분 개방·최종 수납 성공</p><video id="v-T1_1028_B00" controls playsinline preload="none" poster="rollout-T1_1028_B00-f0.jpg" src="rollout-T1_1028_B00.mp4" aria-label="Baseline · T1_1028_B00 · Top 전체 영상"></video><div class="links"><a href="rollout-T1_1028_B00.mp4">전체 영상 직접 열기</a><a href="rollout-T1_1028_B00-sync.mp4">영상·신호 MP4 열기</a></div><details class="sync" data-trial="T1_1028_B00"><summary>영상과 그리퍼 위치 동기화 보기</summary><canvas role="img" aria-label="영상 시간에 따른 그리퍼 위치. 0에서 100점."></canvas><p class="clock" aria-live="off"></p><ol><li><button type="button" data-frame="412">손잡이 재접근 · f412</button></li><li><button type="button" data-frame="450">유지 당김 · f450</button></li><li><button type="button" data-frame="465">충분 개방 · f465</button></li><li><button type="button" data-frame="735">블록 수납 · f735</button></li></ol></details></article><article class="clip"><h4 class="grids">GridS · T1_1028_G13 · Top</h4><p class="meta">본평가 · 10/28 · 충분 개방 성공·최종 수납 미완료</p><video id="v-T1_1028_G13" controls playsinline preload="none" poster="rollout-T1_1028_G13-f0.jpg" src="rollout-T1_1028_G13.mp4" aria-label="GridS · T1_1028_G13 · Top 전체 영상"></video><div class="links"><a href="rollout-T1_1028_G13.mp4">전체 영상 직접 열기</a><a href="rollout-T1_1028_G13-sync.mp4">영상·신호 MP4 열기</a></div><details class="sync" data-trial="T1_1028_G13"><summary>영상과 그리퍼 위치 동기화 보기</summary><canvas role="img" aria-label="영상 시간에 따른 그리퍼 위치. 0에서 100점."></canvas><p class="clock" aria-live="off"></p><ol><li><button type="button" data-frame="195">첫 파지 · f195</button></li><li><button type="button" data-frame="262">이탈 뒤 부분 개방 · f262</button></li><li><button type="button" data-frame="450">손잡이 재유지 · f450</button></li><li><button type="button" data-frame="480">충분 개방 · f480</button></li></ol></details></article></div>
+<p class="meta"><code>observation.state</code>의 <code>gripper.pos</code>는 보정 범위 기준 그리퍼 위치(점)입니다. 저장 기록에 힘·전류·토크 채널은 없습니다. 영상 프레임과 신호 행을 0부터 일대일 대응했습니다. 공칭 시간 차이는 3 μs 미만이며, 물리적인 센서 지연은 계측하지 않았습니다.</p>
+<h3>시간순 동작 프레임</h3>
+<p class="meta">사진은 각 시행의 접근·파지·후속 동작 순서로 배열했습니다. 시간은 각 영상의 시작 기준입니다.</p>
+<div class="pair"><article><h4 class="baseline">Baseline · T1_1028_B00 · Top</h4><ol class="frames"><li><img src="rollout-T1_1028_B00-f412.jpg" loading="lazy" width="640" height="480" alt="손잡이 재접근"><span>손잡이 재접근</span><small>f412 · 13.73초</small></li><li><img src="rollout-T1_1028_B00-f450.jpg" loading="lazy" width="640" height="480" alt="유지 당김"><span>유지 당김</span><small>f450 · 15.00초</small></li><li><img src="rollout-T1_1028_B00-f465.jpg" loading="lazy" width="640" height="480" alt="충분 개방"><span>충분 개방</span><small>f465 · 15.50초</small></li><li><img src="rollout-T1_1028_B00-f735.jpg" loading="lazy" width="640" height="480" alt="블록 수납"><span>블록 수납</span><small>f735 · 24.50초</small></li></ol></article><article><h4 class="grids">GridS · T1_1028_G13 · Top</h4><ol class="frames"><li><img src="rollout-T1_1028_G13-f195.jpg" loading="lazy" width="640" height="480" alt="첫 파지"><span>첫 파지</span><small>f195 · 6.50초</small></li><li><img src="rollout-T1_1028_G13-f262.jpg" loading="lazy" width="640" height="480" alt="이탈 뒤 부분 개방"><span>이탈 뒤 부분 개방</span><small>f262 · 8.73초</small></li><li><img src="rollout-T1_1028_G13-f450.jpg" loading="lazy" width="640" height="480" alt="손잡이 재유지"><span>손잡이 재유지</span><small>f450 · 15.00초</small></li><li><img src="rollout-T1_1028_G13-f480.jpg" loading="lazy" width="640" height="480" alt="충분 개방"><span>충분 개방</span><small>f480 · 16.00초</small></li></ol></article></div>
+<h3>본평가 결과</h3>
+<table><thead><tr><th scope="col">지표</th><th scope="col" class="baseline">Baseline</th><th scope="col" class="grids">GridS</th></tr></thead><tbody><tr><th scope="row">최종 수납</th><td>12/31 · 38.7%</td><td>18/30 · 60.0%</td></tr><tr><th scope="row">충분 개방 · 후속 조작이 가능한 개구부 확보</th><td>19/31 · 61.3%</td><td>27/30 · 90.0%</td></tr></tbody></table>
+
+<details class="supp"><summary>첫 실패 후 개방과 저장 입력 재실행</summary><p>Baseline B00의 gripper.pos는 재접근 f412와 유지 당김 f450에서 모두 7.07점이었습니다. B00은 재접근 뒤 충분히 열고 블록을 수납했습니다. GridS G13은 첫 파지를 확보한 뒤 손잡이가 이탈했지만 다시 잡아 충분히 열었습니다. 본평가의 확정 첫 실패 뒤 충분 개방은 전체 시행 기준 Baseline 14/31, GridS 16/30이었습니다.</p><p>별도 오프라인 진단에서는 GridS G03·G13(충분 개방)과 G14·G04(미충족)의 저장 RGB·상태·지시문을 다시 입력했습니다. G14는 첫 유효 파지 성공, G04는 첫 실패 사례입니다. 동일 관측 안에서 체크포인트와 난수를 고정하고 선택한 보간 특징을 축소했을 때 첫 동작 및 50개 슬롯의 관절 목표 변화가 양쪽 개방 판정 사례에서 관찰됐습니다.</p></details>
+</section><section id="t2" aria-labelledby="h2">
+<h2 id="h2">T2 큐브</h2>
+<p>큐브를 집어 지정 영역에 놓습니다. 큐브 바닥면 전체가 영역 안에 들어가면 100% 안착이며, 절반 이상 들어간 경우도 별도로 집계했습니다.</p>
+<h3>대표 실제 로봇 영상</h3>
+<p class="meta">공통 위치 2의 후속 평가 사례입니다. 조건별로 한 시행의 전체 저장 영상을 제공합니다.</p>
+<div class="pair"><article class="clip"><h4 class="baseline">Baseline · T2_1116_B03 · Belly</h4><p class="meta">후속 평가 · 11/16 · 첫 유효 파지 및 지정 영역 안착</p><video id="v-T2_1116_B03" controls playsinline preload="none" poster="rollout-T2_1116_B03-f0.jpg" src="rollout-T2_1116_B03.mp4" aria-label="Baseline · T2_1116_B03 · Belly 전체 영상"></video><div class="links"><a href="rollout-T2_1116_B03.mp4">전체 영상 직접 열기</a><a href="rollout-T2_1116_B03-sync.mp4">영상·신호 MP4 열기</a></div><details class="sync" data-trial="T2_1116_B03"><summary>영상과 그리퍼 위치 동기화 보기</summary><canvas role="img" aria-label="영상 시간에 따른 그리퍼 위치. 0에서 100점."></canvas><p class="clock" aria-live="off"></p><ol><li><button type="button" data-frame="100">접근 전 큐브 · f100</button></li><li><button type="button" data-frame="144">큐브 파지 · f144</button></li><li><button type="button" data-frame="168">유지 들림 · f168</button></li><li><button type="button" data-frame="264">지정 영역 안착 · f264</button></li></ol></details></article><article class="clip"><h4 class="grids">GridS · T2_1116_G04 · Belly</h4><p class="meta">후속 평가 · 11/16 · 유지 들림·안착 미완료</p><video id="v-T2_1116_G04" controls playsinline preload="none" poster="rollout-T2_1116_G04-f0.jpg" src="rollout-T2_1116_G04.mp4" aria-label="GridS · T2_1116_G04 · Belly 전체 영상"></video><div class="links"><a href="rollout-T2_1116_G04.mp4">전체 영상 직접 열기</a><a href="rollout-T2_1116_G04-sync.mp4">영상·신호 MP4 열기</a></div><details class="sync" data-trial="T2_1116_G04"><summary>영상과 그리퍼 위치 동기화 보기</summary><canvas role="img" aria-label="영상 시간에 따른 그리퍼 위치. 0에서 100점."></canvas><p class="clock" aria-live="off"></p><ol><li><button type="button" data-frame="50">접근 전 큐브 · f50</button></li><li><button type="button" data-frame="116">작업면에 남은 큐브 · f116</button></li><li><button type="button" data-frame="206">재접근 · f206</button></li><li><button type="button" data-frame="280">유지 들림 없음 · f280</button></li></ol></details></article></div>
+<p class="meta"><code>observation.state</code>의 <code>gripper.pos</code>는 보정 범위 기준 그리퍼 위치(점)입니다. 저장 기록에 힘·전류·토크 채널은 없습니다. 영상 프레임과 신호 행을 0부터 일대일 대응했습니다. 공칭 시간 차이는 3 μs 미만이며, 물리적인 센서 지연은 계측하지 않았습니다.</p>
+<h3>시간순 동작 프레임</h3>
+<p class="meta">사진은 각 시행의 접근·파지·후속 동작 순서로 배열했습니다. 시간은 각 영상의 시작 기준입니다.</p>
+<div class="pair"><article><h4 class="baseline">Baseline · T2_1116_B03 · Belly</h4><ol class="frames"><li><img src="rollout-T2_1116_B03-f100.jpg" loading="lazy" width="640" height="480" alt="접근 전 큐브"><span>접근 전 큐브</span><small>f100 · 3.33초</small></li><li><img src="rollout-T2_1116_B03-f144.jpg" loading="lazy" width="640" height="480" alt="큐브 파지"><span>큐브 파지</span><small>f144 · 4.80초</small></li><li><img src="rollout-T2_1116_B03-f168.jpg" loading="lazy" width="640" height="480" alt="유지 들림"><span>유지 들림</span><small>f168 · 5.60초</small></li><li><img src="rollout-T2_1116_B03-f264.jpg" loading="lazy" width="640" height="480" alt="지정 영역 안착"><span>지정 영역 안착</span><small>f264 · 8.80초</small></li></ol></article><article><h4 class="grids">GridS · T2_1116_G04 · Belly</h4><ol class="frames"><li><img src="rollout-T2_1116_G04-f50.jpg" loading="lazy" width="640" height="480" alt="접근 전 큐브"><span>접근 전 큐브</span><small>f50 · 1.67초</small></li><li><img src="rollout-T2_1116_G04-f116.jpg" loading="lazy" width="640" height="480" alt="작업면에 남은 큐브"><span>작업면에 남은 큐브</span><small>f116 · 3.87초</small></li><li><img src="rollout-T2_1116_G04-f206.jpg" loading="lazy" width="640" height="480" alt="재접근"><span>재접근</span><small>f206 · 6.87초</small></li><li><img src="rollout-T2_1116_G04-f280.jpg" loading="lazy" width="640" height="480" alt="유지 들림 없음"><span>유지 들림 없음</span><small>f280 · 9.33초</small></li></ol></article></div>
+<h3>본평가 결과</h3>
+<table><thead><tr><th scope="col">지표</th><th scope="col" class="baseline">Baseline</th><th scope="col" class="grids">GridS</th></tr></thead><tbody><tr><th scope="row">100% 안착</th><td>6/28 · 21.4%</td><td>4/28 · 14.3%</td></tr><tr><th scope="row">50% 이상 안착</th><td>13/28 · 46.4%</td><td>6/28 · 21.4%</td></tr><tr><th scope="row">시행 중 최종 파지 · 한 번 이상 유지 들림</th><td>15/28 · 53.6%</td><td>6/28 · 21.4%</td></tr><tr><th scope="row">첫 유효 파지 · 첫 시도에서 유지 들림</th><td>9/26 · 34.6%</td><td>4/28 · 14.3%</td></tr></tbody></table>
+<p class="meta">첫 유효 파지의 분모에서 파지 시도가 없었던 Baseline B09·B10을 제외했습니다. 전체 시행 기준으로는 Baseline 9/28과 GridS 4/28입니다. 포스터의 본평가 ‘파지’는 시행 중 최종 파지입니다.</p>
+<details class="supp"><summary>후속 평가의 재접근과 유지 들림</summary><p>첫 실패 10건에서는 첫 재접근·닫힘 후보 주변의 유지 들림이 0/10이었습니다. 위치 2의 Baseline B01은 이후 재시도에서 유지 들림이 확인됐습니다. 별도 시행인 Baseline B03에서는 유지 들림 f168에서 13.76점이 기록됐습니다. GridS G04는 f116에 1.23점을 기록했으며 영상에서 큐브가 작업면에 남았습니다.</p><p>후속 평가 최종 파지는 Baseline 8/10, GridS 4/11이었습니다. 50% 이상 안착은 7/10과 3/11, 100% 안착은 7/10과 2/11이었습니다.</p></details>
+</section><section id="t3" aria-labelledby="h3">
+<h2 id="h3">T3 뚜껑</h2>
+<p>뚜껑을 열어 상자 옆에 놓고 블록을 상자 안에 넣습니다. 블록이 상자 안에 들어가면 최종 성공입니다.</p>
+<h3>대표 실제 로봇 영상</h3>
+<p class="meta">본평가 세로 손잡이 사례입니다. 조건별로 한 시행의 전체 저장 영상을 제공합니다.</p>
+<div class="pair"><article class="clip"><h4 class="baseline">Baseline · T3_1111_B15 · Top</h4><p class="meta">본평가 · 11/11 · 정상 뚜껑 처리·최종 수납 성공</p><video id="v-T3_1111_B15" controls playsinline preload="none" poster="rollout-T3_1111_B15-f0.jpg" src="rollout-T3_1111_B15.mp4" aria-label="Baseline · T3_1111_B15 · Top 전체 영상"></video><div class="links"><a href="rollout-T3_1111_B15.mp4">전체 영상 직접 열기</a><a href="rollout-T3_1111_B15-sync.mp4">영상·신호 MP4 열기</a></div><details class="sync" data-trial="T3_1111_B15"><summary>영상과 그리퍼 위치 동기화 보기</summary><canvas role="img" aria-label="영상 시간에 따른 그리퍼 위치. 0에서 100점."></canvas><p class="clock" aria-live="off"></p><ol><li><button type="button" data-frame="90">뚜껑 접근 · f90</button></li><li><button type="button" data-frame="210">유지 들림 · f210</button></li><li><button type="button" data-frame="330">뚜껑 놓기 · f330</button></li><li><button type="button" data-frame="900">블록 파지 · f900</button></li><li><button type="button" data-frame="1020">최종 수납 · f1020</button></li></ol></details></article><article class="clip"><h4 class="grids">GridS · T3_1111_G17 · Top</h4><p class="meta">본평가 · 11/11 · 정상 뚜껑 처리·최종 수납 성공</p><video id="v-T3_1111_G17" controls playsinline preload="none" poster="rollout-T3_1111_G17-f0.jpg" src="rollout-T3_1111_G17.mp4" aria-label="GridS · T3_1111_G17 · Top 전체 영상"></video><div class="links"><a href="rollout-T3_1111_G17.mp4">전체 영상 직접 열기</a><a href="rollout-T3_1111_G17-sync.mp4">영상·신호 MP4 열기</a></div><details class="sync" data-trial="T3_1111_G17"><summary>영상과 그리퍼 위치 동기화 보기</summary><canvas role="img" aria-label="영상 시간에 따른 그리퍼 위치. 0에서 100점."></canvas><p class="clock" aria-live="off"></p><ol><li><button type="button" data-frame="90">초기 접근 · f90</button></li><li><button type="button" data-frame="210">유지 들림 · f210</button></li><li><button type="button" data-frame="270">뚜껑 놓기 · f270</button></li><li><button type="button" data-frame="510">블록 파지 · f510</button></li><li><button type="button" data-frame="570">최종 수납 · f570</button></li></ol></details></article></div>
+<p class="meta"><code>observation.state</code>의 <code>gripper.pos</code>는 보정 범위 기준 그리퍼 위치(점)입니다. 저장 기록에 힘·전류·토크 채널은 없습니다. 영상 프레임과 신호 행을 0부터 일대일 대응했습니다. 공칭 시간 차이는 3 μs 미만이며, 물리적인 센서 지연은 계측하지 않았습니다.</p>
+<h3>시간순 동작 프레임</h3>
+<p class="meta">사진은 각 시행의 접근·파지·후속 동작 순서로 배열했습니다. 시간은 각 영상의 시작 기준입니다.</p>
+<div class="pair"><article><h4 class="baseline">Baseline · T3_1111_B15 · Top</h4><ol class="frames"><li><img src="rollout-T3_1111_B15-f90.jpg" loading="lazy" width="640" height="480" alt="뚜껑 접근"><span>뚜껑 접근</span><small>f90 · 3.00초</small></li><li><img src="rollout-T3_1111_B15-f210.jpg" loading="lazy" width="640" height="480" alt="유지 들림"><span>유지 들림</span><small>f210 · 7.00초</small></li><li><img src="rollout-T3_1111_B15-f330.jpg" loading="lazy" width="640" height="480" alt="뚜껑 놓기"><span>뚜껑 놓기</span><small>f330 · 11.00초</small></li><li><img src="rollout-T3_1111_B15-f900.jpg" loading="lazy" width="640" height="480" alt="블록 파지"><span>블록 파지</span><small>f900 · 30.00초</small></li><li><img src="rollout-T3_1111_B15-f1020.jpg" loading="lazy" width="640" height="480" alt="최종 수납"><span>최종 수납</span><small>f1020 · 34.00초</small></li></ol></article><article><h4 class="grids">GridS · T3_1111_G17 · Top</h4><ol class="frames"><li><img src="rollout-T3_1111_G17-f90.jpg" loading="lazy" width="640" height="480" alt="초기 접근"><span>초기 접근</span><small>f90 · 3.00초</small></li><li><img src="rollout-T3_1111_G17-f210.jpg" loading="lazy" width="640" height="480" alt="유지 들림"><span>유지 들림</span><small>f210 · 7.00초</small></li><li><img src="rollout-T3_1111_G17-f270.jpg" loading="lazy" width="640" height="480" alt="뚜껑 놓기"><span>뚜껑 놓기</span><small>f270 · 9.00초</small></li><li><img src="rollout-T3_1111_G17-f510.jpg" loading="lazy" width="640" height="480" alt="블록 파지"><span>블록 파지</span><small>f510 · 17.00초</small></li><li><img src="rollout-T3_1111_G17-f570.jpg" loading="lazy" width="640" height="480" alt="최종 수납"><span>최종 수납</span><small>f570 · 19.00초</small></li></ol></article></div>
+<h3>본평가 결과</h3>
+<table><thead><tr><th scope="col">지표</th><th scope="col" class="baseline">Baseline</th><th scope="col" class="grids">GridS</th></tr></thead><tbody><tr><th scope="row">최종 수납</th><td>19/30 · 63.3%</td><td>13/30 · 43.3%</td></tr><tr><th scope="row">정상 개방 · 뚜껑을 정상적으로 열기</th><td>27/30 · 90.0%</td><td>24/30 · 80.0%</td></tr><tr><th scope="row">정상 뚜껑 처리 · 열고 상자 옆에 놓기</th><td>24/30 · 80.0%</td><td>23/30 · 76.7%</td></tr></tbody></table>
+
+<details class="supp"><summary>손잡이 방향과 후속 블록 파지</summary><p>정상 뚜껑 처리는 가로에서 Baseline 13/15, GridS 14/15, 세로에서 11/15, 9/15였습니다. 위 비교 영상은 모두 세로 손잡이 사례입니다. 유지 들림 프레임 f210에서 gripper.pos는 B15가 3.05점, G17이 3.44점이었습니다.</p><p>같은 세로 방향의 GridS G17과 G15를 저장 그리퍼 목표·위치 및 Belly 영상으로 대조했습니다. 뚜껑을 처리한 뒤 G17은 블록을 유지해 이동했고, G15는 블록 유지 들림과 최종 수납을 완료하지 못했습니다.</p></details>
 </section>
-<section aria-labelledby="lid">
-<h2 id="lid">T3 뚜껑 열기</h2>
-<p>뚜껑을 정상적으로 열고 놓은 시행은 Baseline 24/30, GridS 23/30이었습니다. 이후 블록을 상자에 넣는 최종 수납까지 완료한 시행은 각각 19/30과 13/30이었습니다.</p>
-<figure class="single"><video controls playsinline preload="none" poster="lid-grid.jpg" src="lid-grid.mp4" aria-label="T3 G13 손잡이 이탈 사례"></video><figcaption>GridS G13 · 세로 손잡이 접근 뒤 안정된 들림을 확보하지 못한 사례</figcaption></figure>
+<section aria-labelledby="conclusion">
+<h2 id="conclusion">결론</h2>
+<p>GridS 적용 결과는 과제별로 달랐습니다. 본평가에서 T1의 최종 수납은 38.7%에서 60.0%로 증가했습니다. T2의 100% 안착은 21.4%에서 14.3%로, T3의 최종 수납은 63.3%에서 43.3%로 감소했습니다.</p>
+<p>단계별로 보면 T1의 충분 개방 증가, T2의 시행 중 유지 들림 감소, T3의 정상 뚜껑 처리 이후 수납 격차가 관찰됐습니다. 시행 순서와 접촉 조건 등은 충분히 통제되지 않았습니다.</p>
+<details class="supp"><summary>검정 범위 보기</summary><p>T1 충분 개방, T2 본평가·후속 평가의 최종 파지, T3 정상 뚜껑 처리를 묶은 Holm 보정 Fisher 정확검정에서는 모두 유의하지 않았습니다. 사후 탐색적 Barnard·Boschloo 검정에서는 T1 충분 개방과 T2 본평가 최종 파지만 보정 후 .05 미만이었습니다.</p></details>
 </section>
-<section id="results">
-<h2>서랍에서 관찰된 차이</h2>
-<p>첫 당김으로 충분히 연 시행의 평균 재생 시간은 두 정책 모두 9.00초였습니다. 첫 실패 뒤 충분히 연 시행에서는 Baseline 25.36초, GridS 17.00초였습니다. 아래 곡선은 각 조건의 전체 시행 중 해당 영상 시점까지 성공이 확인된 비율입니다.</p>
-<figure class="figure"><img loading="lazy" src="outcomes.png" alt="T1, T2 두 날짜, T3의 저장 영상 기준 누적 성공 곡선"><figcaption>가로축은 저장 영상의 재생 시간입니다. 세로축은 각 조건의 전체 시행 중 해당 시점까지 성공이 확인된 비율입니다. T3 GridS 정상 처리 23건 중 놓기 시각이 확인된 22건을 곡선에 반영했습니다.</figcaption></figure>
-<p class="conclusion">GridS는 첫 파지에 성공해 서랍을 충분히 연 경우와 첫 파지에 실패한 뒤 충분히 연 경우가 모두 더 많았습니다. 손잡이를 다시 잡아 당겼어도 충분히 열리지 않은 경우도 있었습니다.</p>
-</section>
+<footer><a href="https://fediory.com/Grid-Sampler/">Grid Sampler</a> · <a href="https://arxiv.org/pdf/2605.29662">SAFE-Pruner (사진 배열 참고)</a> · <a href="https://github.com/bibi0108/grids-smolvla-demo">저장소</a></footer>
 </main>
-<footer>관련 연구 <a href="https://fediory.com/Grid-Sampler/">Grid Sampler</a></footer>
+</body>
 </html>
+
+
