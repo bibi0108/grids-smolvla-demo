@@ -2,7 +2,7 @@
 <html lang="ko">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GridS로 서랍을 여는 로봇 | 종합설계 II</title>
+<title>GridS는 어떤 경로로 서랍을 더 자주 열었을까? | 종합설계 II</title>
 <style>
 :root{color-scheme:light;--bg:#f5f5ec;--ink:#142b28;--muted:#465f58;--line:#c6d5ca;--accent:#006854}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,sans-serif}main,nav,footer{max-width:1120px;margin:auto;padding:0 24px}nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;border-bottom:1px solid var(--line);font-size:.9rem}nav a,footer a{color:var(--accent)}header{padding:58px 0 32px;max-width:830px}h1,h2,h3,p{margin:0}h1{font-size:clamp(2.35rem,7vw,5rem);letter-spacing:-.09em;line-height:1.08;margin:.18em 0 .33em}h2{font-size:clamp(1.65rem,4vw,2.6rem);line-height:1.2;letter-spacing:-.065em;margin-bottom:14px}h3{font-size:1.03rem}p{color:var(--muted)}section{padding:38px 0 46px;border-top:1px solid var(--line)}figure{margin:0}figcaption{padding:10px 0;color:var(--muted);font-size:.9rem}video,img{width:100%;display:block;border-radius:10px}video{aspect-ratio:4/3;background:#153a33}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:20px 0}.metric{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px}.metric div{border-left:3px solid var(--accent);padding-left:13px}.metric strong{font-size:1.5rem;display:block}.single{max-width:540px;margin-top:18px}.figure{margin-top:20px}footer{padding-block:25px 44px;border-top:1px solid var(--line);font-size:.9rem}@media(max-width:620px){.grid{grid-template-columns:1fr}header{padding-top:34px}}
 </style>
@@ -10,7 +10,7 @@
 <main>
 <header>
 <p>SmolVLA · GridS · SO-101</p>
-<h1>로봇은 왜 서랍을<br>더 자주 열었을까?</h1>
+<h1>GridS는 어떤 경로로 서랍을 더 자주 열었을까?</h1>
 <p>카메라 영상에서 학습된 좌표로 시각 특징을 골라 쓰는 GridS를 SmolVLA에 적용했습니다. 서랍 열기, 큐브 옮기기, 뚜껑 열기 세 과제의 실제 로봇 영상으로 성능 차이가 나타난 순간을 살펴봅니다.</p>
 <div class="metric"><div><strong>19/31 → 27/30</strong>T1 충분 개방 · Baseline → GridS</div><div><strong>11/31 → 23/30</strong>저장 영상 20초까지 충분 개방</div></div>
 </header>
@@ -21,6 +21,7 @@
 <figure><video controls playsinline preload="metadata" src="media/drawer-first.mp4" aria-label="T1 G03 첫 당김으로 충분 개방"></video><figcaption><h3>첫 당김으로 열기</h3>GridS G03 · 첫 당김으로 충분히 엽니다.</figcaption></figure>
 <figure><video controls playsinline preload="metadata" src="media/drawer-regrasp.mp4" aria-label="T1 G13 손잡이 이탈 후 재유지"></video><figcaption><h3>놓친 손잡이를 다시 잡기</h3>GridS G13 · 부분 개방 뒤 손잡이를 놓쳤다가 다시 잡아 충분히 엽니다.</figcaption></figure>
 </div>
+<p>서랍에서는 손잡이를 다시 잡아 당겨도 충분히 열리지 않은 경우가 있었습니다. 큐브에서는 다시 접근해 그리퍼를 닫아도 바로 들어 올려 유지하지 못했고, 뚜껑에서는 첫 실패 후 유지 들림이 손잡이 방향에 따라 달랐습니다.</p>
 </section>
 <section aria-labelledby="cube">
 <h2 id="cube">T2 큐브 옮기기</h2>
