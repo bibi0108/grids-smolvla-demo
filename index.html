@@ -20,7 +20,7 @@
 <h2 id="overview">연구 개요</h2>
 <p>SmolVLA는 카메라 영상, 작업 지시문, 팔 5축과 그리퍼의 현재 상태로부터 로봇 동작 목표를 생성하는 시각·언어·행동 정책입니다. GridS는 커넥터가 만든 8×8 시각 특징 지도에서 학습된 연속 좌표 16개를 사용해 특징을 보간하고 좌표 임베딩을 더합니다.</p>
 <figure class="flow"><div>Top · Wrist · Belly 영상</div><div>시각 인코더 → 커넥터</div><div class="branches"><span class="baseline">Baseline<br>카메라당 64 토큰</span><span class="grids">GridS<br>카메라당 16 토큰</span></div><div>SmolVLA 정책 ← 작업 지시 · 관절 상태</div><div>팔 5축·그리퍼 목표 → SO-101 제어</div><figcaption>개념도 · 두 정책의 시각 특징 경로는 커넥터 뒤에서 갈립니다.</figcaption></figure>
-<div class="pair illustrations"><figure><img src="rollout-grid-camera-top.jpg" loading="lazy" alt="큐브 과제의 상단 카메라 원본 프레임"><figcaption>원본 카메라 프레임 · T2 후속 평가 GridS G02 · Top f50 (1.67초)</figcaption></figure><figure><img src="rollout-grid-points-top.svg" loading="lazy" alt="커넥터 규칙 격자와 GridS의 16개 표본 좌표"><figcaption>처리 시각화 · 같은 관측에서 커넥터의 8×8 규칙 격자와 GridS가 예측한 16개 정규화 좌표를 비교했습니다. 저장된 상단 카메라 관측 중 표본점이 가장자리에서 비교적 멀리 분포한 예시입니다.</figcaption></figure></div>
+<div class="pair illustrations"><figure><img src="rollout-grid-camera-t3-g25.jpg" loading="lazy" alt="뚜껑 과제의 상단 카메라 원본 프레임"><figcaption>원본 카메라 프레임 · T3 본평가 GridS G25 · Top f150 (5.00초)</figcaption></figure><figure><img src="rollout-grid-points-t3-g25.svg" loading="lazy" alt="커넥터 규칙 격자와 GridS의 16개 표본 좌표"><figcaption>처리 시각화 · 같은 관측에서 커넥터의 8×8 규칙 격자와 GridS가 예측한 16개 정규화 좌표를 비교했습니다. 저장된 상단 카메라 관측 중 표본점이 가장자리에서 비교적 멀리 분포한 예시입니다.</figcaption></figure></div>
 </section>
 <section id="t1" aria-labelledby="h1">
 <h2 id="h1">T1 서랍 열기·큐브 수납</h2>
